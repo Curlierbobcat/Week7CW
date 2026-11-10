@@ -10,7 +10,7 @@ public class RobotSim {
         Arm arm = new Arm();
 
         // IN CLASS: After writing Elevator.java, replace null with new Elevator().
-        Mechanism elevator = null;
+        Elevator elevator = new Elevator();
 
         BatteryMonitor battery = new BatteryMonitor(12.6);
 
@@ -28,6 +28,9 @@ public class RobotSim {
             String input = scanner.nextLine().trim().toLowerCase();
             if (input.isEmpty()) continue;
             String[] parts = input.split("\\s+");
+            for(int i = 0; i < parts.length; i++){
+                System.out.println(parts[i]);
+            }
 
             try {
                 switch (parts[0]) {

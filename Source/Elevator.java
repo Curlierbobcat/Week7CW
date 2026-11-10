@@ -7,3 +7,20 @@ package Source;
 // 4. Reject invalid heights without changing the current position.
 //
 // Start by replacing this comment with your class declaration.
+
+public class Elevator extends Mechanism{
+
+    public Elevator(){
+        super("Elevator");
+    }
+
+    @Override
+    public void setPosition(double position){
+        if(position >= 0 && position <= 2.0){
+            super.position = position; 
+        }
+        else {
+        System.out.println("Enter a height between 0 and 2");
+        }
+    }
+}
