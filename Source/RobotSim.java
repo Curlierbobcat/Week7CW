@@ -78,16 +78,10 @@ public class RobotSim {
                         intake.printStatus();
                         break;
                     case "status":
-                        drivetrain.printStatus();
-                        System.out.println("Arm position: " + arm.getPosition() + " degrees");
-                        if (elevator != null) {
-                            System.out.println("Elevator position: " + elevator.getPosition() + " meters");
+                        Loggable[] devices = {arm, elevator, battery};
+                        for (Loggable device : devices){
+                            device.printStatus();
                         }
-                        intake.printStatus();
-                        battery.printStatus();
-                        // IN CLASS: After adding Loggable, try replacing this
-                        // section with a Loggable[] loop over the components.
-                        break;
                     case "help":
                         printHelp();
                         break;

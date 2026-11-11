@@ -8,7 +8,7 @@ package Source;
 //
 // Start by replacing this comment with your class declaration.
 
-public class Elevator extends Mechanism{
+public class Elevator extends Mechanism implements Loggable{
 
     public Elevator(){
         super("Elevator");
@@ -22,5 +22,8 @@ public class Elevator extends Mechanism{
         else {
         System.out.println("Enter a height between 0 and 2");
         }
+    }
+    public void printStatus(){
+        System.out.println("Elevator Height is: " + this.position + " meters.");
     }
 }
