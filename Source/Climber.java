@@ -19,6 +19,9 @@ public class Climber extends Mechanism{
         } else {
             System.out.println("Resulting value is not between 0 and 30 cm");
         }
+    } 
+    public void retract(){
+        this.setPosition(0);
     }
 }
  
