@@ -14,7 +14,7 @@ public class Arm extends Mechanism implements Loggable{
         
     }
         public void printStatus(){
-            System.out.println("Arm Position is " + this.position + " degrees.");
+            System.out.println("Arm Position is " + this.position + " degrees");
         }
 
     // TODO (together): Override setPosition(double position).

@@ -8,7 +8,7 @@ public class RobotSim {
         Drivetrain drivetrain = new Drivetrain();
         Intake intake = new Intake();
         Arm arm = new Arm();
-
+        Climber climber = new Climber();
         // IN CLASS: After writing Elevator.java, replace null with new Elevator().
         Elevator elevator = new Elevator();
 
@@ -28,9 +28,7 @@ public class RobotSim {
             String input = scanner.nextLine().trim().toLowerCase();
             if (input.isEmpty()) continue;
             String[] parts = input.split("\\s+");
-            for(int i = 0; i < parts.length; i++){
-                System.out.println(parts[i]);
-            }
+           
 
             try {
                 switch (parts[0]) {
@@ -69,16 +67,51 @@ public class RobotSim {
                         elevator.setPosition(Double.parseDouble(parts[1]));
                         System.out.println("Elevator position: " + elevator.getPosition() + " meters");
                         break;
+                    case "climber":
+                    // Sets the arms position, including  
+                        if (parts.length == 2){   
+                        if (isDouble(parts[1]) == true){
+                            climber.setPosition(Double.parseDouble(parts[1]));
+                            break;
+                        } else {
+                            if (parts[1].equals("extend")){
+                                climber.setPosition(30);
+                                break;
+                            } else if (parts[1].equals("retract")){
+                                climber.setPosition(0);
+                                break;
+                            } else {
+                                System.out.println("Error: input an available command");
+                                break;
+                            }
+                        }      
+                    } if (parts.length != 2) {
+                            System.out.println("Input a viable command");
+                            break;
+                        } 
                     case "intake":
-                        intake.intake();
-                        intake.printStatus();
-                        break;
-                    case "outtake":
-                        intake.outtake();
-                        intake.printStatus();
-                        break;
+                        switch (parts[1]){
+                            case "takein":
+                                intake.takein();
+                            case "takeout":
+                                intake.takeout();
+                            case "deploy":
+                                intake.deploy();
+                            case "retract":
+                                intake.retract();
+                            case "collect":
+                                intake.collectPeice();
+                            case "eject":
+                                intake.ejectPeice();
+                            case "stopspinner":
+                                intake.stopSpinner();
+                            case "stopdeployer":
+                                intake.stopDeployer();
+                            case "stop":
+                                intake.stop();
+                        }
                     case "status":
-                        Loggable[] devices = {arm, elevator, battery};
+                        Loggable[] devices = {arm, elevator, battery, climber, intake};
                         for (Loggable device : devices){
                             device.printStatus();
                         }
@@ -112,5 +145,30 @@ public class RobotSim {
         System.out.println("status                Print component status");
         System.out.println("help                  Show these commands");
         System.out.println("quit                  Exit the simulator");
+        System.out.println("climber retract       Set climber to min extension");
+        System.out.println("climber extend        Set climber to max extention");
+        System.out.println("climber <cm>          Set climber extension (0 to 30)");
+        System.out.println("intake takein         Set spinner speed to 50");
+        System.out.println("intake takeout        Set spinner speed to -50");
+        System.out.println("intake deploy         Set angle of intake to 0");
+        System.out.println("intake retract        Set angle of intake to 90");
+        System.out.println("intake collect        Set deployer speed to -50");
+        System.out.println("intake eject          Set deployer speed to 50");
+        System.out.println("intake stopspinner    Set spinner speed to speed to 0");
+        System.out.println("intake stopdeployer   Set deployer speed to speed to 0");
+        System.out.println("intake stop           Set all speeds to 0");
+
+
+    }   
+
+    public static boolean isDouble(String str){
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (Exception ignored) {
+            return false;
+        }
     }
+    
 }
+
